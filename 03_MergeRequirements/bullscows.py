@@ -56,6 +56,16 @@ def gameplay(ask: callable, inform: callable, words: list[str]) -> int:
             break
     return attempts
 
+def custom_cow(text: str) -> None:
+    cow = r"""
+     \   ^__^             ___wiiiii
+      \  (oo)\_______     |
+         (__)\ HELLO )\/\/
+             ||----w |
+             ||     ||
+    """
+    print(text)
+    print(cow)
 
 def ask(prompt: str, valid: list[str] = None) -> str:
     '''
@@ -72,7 +82,7 @@ def ask(prompt: str, valid: list[str] = None) -> str:
         guess = input(prompt)
         if valid is None or guess in valid:
             return guess
-        print(cowsay("Неверное слово. Попробуйте снова", get_random_cow()))
+        print(custom_cow("Неверное слово. Попробуйте снова"))
 
 
 def inform(format_string: str, bulls: int, cows: int) -> None:
