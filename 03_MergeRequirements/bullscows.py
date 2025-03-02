@@ -90,7 +90,7 @@ def inform(format_string: str, bulls: int, cows: int) -> None:
 def main():
     parser = argparse.ArgumentParser(description='Bulls and cows game')
     parser.add_argument('dictionary', help='The dictionary of words')
-    parser.add_argument('length', type=int, default=5, help='The length of the words')
+    parser.add_argument('length', type=int, default=5, nargs='?', help='The length of the words')
     args = parser.parse_args()
 
     if args.dictionary.startswith('http'):
