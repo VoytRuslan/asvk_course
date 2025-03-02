@@ -72,4 +72,18 @@ def ask(prompt: str, valid: list[str] = None) -> str:
         print("Неверное слово. Попробуйте снова")
 
 
-print(ask("Введите слово: ", ["слово", "другое"]))
+def inform(format_string: str, bulls: int, cows: int) -> None:
+    '''
+    Функция выводит результат игры
+
+    :param format_string: str - формат вывода
+    :param bulls: int - количество быков
+    :param cows: int - количество коров
+    :return: None
+    '''
+
+    print(format_string.format(bulls, cows))
+
+
+inform("Быки: {}, Коровы: {}", 1, 1)
+print(gameplay(ask, inform, ["ропот", "полип"]))
