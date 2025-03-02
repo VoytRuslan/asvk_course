@@ -11,6 +11,7 @@ def bullscows(guess: str, secret: str) -> tuple[int, int]:
     :param secret: str - загаданное слово
     :return: tupe[int, int] - количество быков и коров
     '''
+
     bulls = 0
     cows = 0
     guess_cows = []
@@ -51,3 +52,24 @@ def gameplay(ask: callable, inform: callable, words: list[str]) -> int:
         if bulls == len(secret):
             break
     return attempts
+
+
+def ask(prompt: str, valid: list[str] = None) -> str:
+    '''
+    Функция спрашивает у пользователя слово
+    Если необязательный параметр valid не пуст, допустим только ввод слова из valid
+    Иначе спрашивает повторно
+
+    :param prompt: str - приглашение к вводу
+    :param valid: list[str] - список допустимых слов
+    :return: str - введенное пользователем слово
+    '''
+
+    while True:
+        guess = input(prompt)
+        if valid is None or guess in valid:
+            return guess
+        print("Неверное слово. Попробуйте снова")
+
+
+print(ask("Введите слово: ", ["слово", "другое"]))
