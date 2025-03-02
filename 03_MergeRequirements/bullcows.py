@@ -1,4 +1,6 @@
 import random
+import urllib.request
+import argparse
 
 
 def bullscows(guess: str, secret: str) -> tuple[int, int]:
@@ -85,5 +87,24 @@ def inform(format_string: str, bulls: int, cows: int) -> None:
     print(format_string.format(bulls, cows))
 
 
-inform("Быки: {}, Коровы: {}", 1, 1)
-print(gameplay(ask, inform, ["ропот", "полип"]))
+def main():
+    parser = argparse.ArgumentParser(description='Bulls and cows game')
+    parser.add_argument('dictionary', help='The dictionary of words')
+    parser.add_argument('length', type=int, default=5, help='The length of the words')
+    args = parser.parse_args()
+
+    if args.dictionary.startswith('http'):
+        with urllib.request.urlopen(args.dictionary) as f:
+            words = [word.decode('utf-8').strip() for word in f]
+    else:
+        with open(args.dictionary) as f:
+            words = [word.strip() for word in f]
+
+    words = list(filter(lambda word: len(word) == args.length, words))
+
+    attempts = gameplay(ask, inform, words)
+    print(f'Количество попыток: {attempts}')
+
+
+if __name__ == '__main__':
+    main()
