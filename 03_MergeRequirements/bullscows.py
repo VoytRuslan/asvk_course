@@ -1,3 +1,4 @@
+from cowsay import cowsay, get_random_cow
 import random
 import urllib.request
 import argparse
@@ -71,7 +72,7 @@ def ask(prompt: str, valid: list[str] = None) -> str:
         guess = input(prompt)
         if valid is None or guess in valid:
             return guess
-        print("Неверное слово. Попробуйте снова")
+        print(cowsay("Неверное слово. Попробуйте снова", get_random_cow()))
 
 
 def inform(format_string: str, bulls: int, cows: int) -> None:
@@ -84,7 +85,7 @@ def inform(format_string: str, bulls: int, cows: int) -> None:
     :return: None
     '''
 
-    print(format_string.format(bulls, cows))
+    print(cowsay(format_string.format(bulls, cows), get_random_cow()))
 
 
 def main():
